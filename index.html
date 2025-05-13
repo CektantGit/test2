@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AR Auto Launch</title>
+</head>
+<body>
+  <p>Загрузка AR…</p>
+
+  <script>
+    // Замените ссылку ниже на вашу модель
+    const glbUrl = encodeURIComponent('https://example.com/model.glb'); // <- ваша .glb модель
+    const fallbackUrl = 'https://example.com/model.glb'; // <- fallback при неудаче
+
+    const androidIntentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${glbUrl}&mode=ar_preferred&resizable=false#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end;`;
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isChrome = /Chrome/i.test(navigator.userAgent);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (isAndroid && isChrome) {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.setAttribute('href', androidIntentUrl);
+          a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+        }, 800); // задержка, чтобы не заблокировалось
+      }
+    });
+  </script>
+</body>
+</html>
