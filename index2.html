@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AR Auto Launch (iframe)</title>
+</head>
+<body>
+  <p>Загрузка AR…</p>
+
+  <script>
+    const glbUrl = 'https://vizbl-2.s3.us-west-1.amazonaws.com/native/404f9483-3d1d-43c1-9f72-fdec98314a37.glb?version=12';
+    const encodedGlbUrl = encodeURIComponent(glbUrl);
+    const fallbackUrl = glbUrl;
+
+    const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${encodedGlbUrl}&mode=ar_preferred&resizable=false#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end;`;
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isChrome = /Chrome/i.test(navigator.userAgent);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (isAndroid && isChrome) {
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = intentUrl;
+        document.body.appendChild(iframe);
+      }
+    });
+  </script>
+</body>
+</html>
