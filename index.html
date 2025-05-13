@@ -10,8 +10,8 @@
 
   <script>
     // Замените ссылку ниже на вашу модель
-    const glbUrl = encodeURIComponent('https://example.com/model.glb'); // <- ваша .glb модель
-    const fallbackUrl = 'https://example.com/model.glb'; // <- fallback при неудаче
+    const glbUrl = encodeURIComponent('https://vizbl-2.s3.us-west-1.amazonaws.com/native/404f9483-3d1d-43c1-9f72-fdec98314a37.glb?version=12'); // <- ваша .glb модель
+    const fallbackUrl = 'google.com'; // <- fallback при неудаче
 
     const androidIntentUrl = `intent://arvr.google.com/scene-viewer/1.0?file=${glbUrl}&mode=ar_preferred&resizable=false#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end;`;
 
